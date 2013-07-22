@@ -193,6 +193,12 @@ public:
 
 	// Only works on Win32, all other platforms are "force-vsync"
 	void SetVSyncInterval(int interval);  // one of the above VSYNC, or a higher number for multi-frame waits (could be useful for 30hz games)
+
+#ifdef ANDROID
+	// TODO: Enable elsewhere if it's supported elsewhere.
+	BoolState<GL_ALPHA_TEST_QCOM, false> alphaTestQCOM;
+	STATE2(glAlphaFuncQCOM, GLenum, GLclampf, GL_ALWAYS, 0.0f) alphaFuncQCOM;
+#endif
 };
 
 #undef STATE1

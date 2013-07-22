@@ -51,6 +51,14 @@ void OpenGLState::Restore() {
 
 	dither.restore(); count++;
 
+#ifdef ANDROID
+	if (gl_extensions.QCOM_alpha_test) {
+		alphaTestQCOM.restore();
+		alphaFuncQCOM.restore();
+	}
+	count += 2;
+#endif
+
 	assert(count == state_count && "OpenGLState::Restore is missing some states");
 }
 
